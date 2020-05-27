@@ -48,7 +48,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-static uint16_t aDST_Buffer[3];
+static uint16_t aDST_Buffer[5];
 __IO uint16_t uhADCxGrpInjectedConvertedSeq = 0;
 __IO uint16_t uhADCxGrpInjectedConvertedData[2] = {VAR_CONVERTED_DATA_INIT_VALUE, VAR_CONVERTED_DATA_INIT_VALUE}; /* ADC group injected conversion data */
 /* USER CODE END PV */
@@ -127,7 +127,7 @@ int main(void)
 	/* Set DMA transfer size */
   LL_DMA_SetDataLength(DMA1,
                        LL_DMA_CHANNEL_1,
-                       3);
+                       5);
 
   /* Enable DMA transfer complete/error interrupts */
   LL_DMA_EnableIT_TC(DMA1, LL_DMA_CHANNEL_1);
@@ -142,11 +142,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		LL_mDelay(100);
-
-		uhADCxGrpInjectedConvertedData[0] = VAR_CONVERTED_DATA_INIT_VALUE;
-		uhADCxGrpInjectedConvertedData[1] = VAR_CONVERTED_DATA_INIT_VALUE;
-		
 		if ((LL_ADC_IsEnabled(ADC1) == 1)               &&
     (LL_ADC_IsDisableOngoing(ADC1) == 0)        &&
     (LL_ADC_INJ_IsConversionOngoing(ADC1) == 0)   )
@@ -157,6 +152,17 @@ int main(void)
 		else
 		{
 			Error_Handler();
+		}
+
+		while(uhADCxGrpInjectedConvertedSeq == 0){};
+
+		if(uhADCxGrpInjectedConvertedData[0] < 0x30)
+		{
+			LL_mDelay(100);
+		}
+		else
+		{
+			LL_mDelay(1);
 		}
     /* USER CODE END WHILE */
 

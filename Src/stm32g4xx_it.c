@@ -226,17 +226,10 @@ void ADC1_2_IRQHandler(void)
   /* USER CODE BEGIN ADC1_2_IRQn 0 */
 	if(LL_ADC_IsActiveFlag_JEOS(ADC1) != 0)
   {
-		//if(uhADCxGrpInjectedConvertedSeq == 0)
-		//{
-		//	uhADCxGrpInjectedConvertedSeq++;
-			uhADCxGrpInjectedConvertedData[0] = LL_ADC_INJ_ReadConversionData12(ADC1, LL_ADC_INJ_RANK_1);
-		//}
-		//else
-		//{
-		//	uhADCxGrpInjectedConvertedSeq = 0;
-			uhADCxGrpInjectedConvertedData[1] = LL_ADC_INJ_ReadConversionData12(ADC1, LL_ADC_INJ_RANK_2);
-		//}
+		uhADCxGrpInjectedConvertedData[0] = LL_ADC_INJ_ReadConversionData12(ADC1, LL_ADC_INJ_RANK_1);
+		uhADCxGrpInjectedConvertedData[1] = LL_ADC_INJ_ReadConversionData12(ADC1, LL_ADC_INJ_RANK_2);
 		LL_ADC_ClearFlag_JEOS(ADC1);
+		uhADCxGrpInjectedConvertedSeq = 1;
   }
 
   /* USER CODE END ADC1_2_IRQn 0 */

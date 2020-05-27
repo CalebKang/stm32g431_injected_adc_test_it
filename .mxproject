@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=C:/Workspace/_Demo/stm32g431_injeted_adc_test/Inc
+HeaderPath=C:/Workspace/_Demo/stm32g431_injected_adc_test_it/Inc
 HeaderFiles=stm32g4xx_it.h;stm32g4xx_hal_conf.h;main.h;gpio.h;adc.h;dac.h;dma.h;tim.h;stm32_assert.h;
-SourcePath=C:/Workspace/_Demo/stm32g431_injeted_adc_test/Src
+SourcePath=C:/Workspace/_Demo/stm32g431_injected_adc_test_it/Src
 SourceFiles=stm32g4xx_it.c;stm32g4xx_hal_msp.c;main.c;gpio.c;adc.c;dac.c;dma.c;tim.c;
 
 [PreviousLibFiles]
