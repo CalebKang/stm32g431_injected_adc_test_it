@@ -108,9 +108,10 @@ int main(void)
 	Activate_DAC();
 	if ((LL_ADC_IsEnabled(ADC1) == 1) &&(LL_ADC_IsDisableOngoing(ADC1) == 0)&&(LL_ADC_REG_IsConversionOngoing(ADC1) == 0))
   {
-    LL_ADC_REG_StartConversion(ADC1);
-		LL_ADC_EnableIT_EOC(ADC1);
+		LL_ADC_DisableIT_EOC(ADC1);
     LL_ADC_DisableIT_EOS(ADC1);
+		LL_ADC_EnableIT_JEOS(ADC1);
+    LL_ADC_REG_StartConversion(ADC1);
   }
 	else
 	{
@@ -142,7 +143,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		if ((LL_ADC_IsEnabled(ADC1) == 1)               &&
+		if((LL_ADC_IsEnabled(ADC1) == 1)               &&
     (LL_ADC_IsDisableOngoing(ADC1) == 0)        &&
     (LL_ADC_INJ_IsConversionOngoing(ADC1) == 0)   )
 		{
